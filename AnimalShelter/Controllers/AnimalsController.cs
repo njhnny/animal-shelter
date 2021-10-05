@@ -5,18 +5,18 @@ using System.Linq;
 
 namespace AnimalShelter.Controllers
 {
-  public class ItemsController : Controller
+  public class AnimalsController : Controller
   {
     private readonly AnimalShelterContext _db;
 
-    public ItemsController(AnimalShelterContext db)
+    public AnimalsController(AnimalShelterContext db)
     {
       _db = db;
     }
 
     public ActionResult Index()
     {
-      List<Item> model = _db.Items.ToList();
+      List<Animal> model = _db.Animals.ToList();
       return View(model);
     }
 
@@ -26,16 +26,16 @@ namespace AnimalShelter.Controllers
     }
 
     [HttpPost]
-    public ActionResult Create(Item item)
+    public ActionResult Create(Animal item)
     {
-        _db.Items.Add(item);
+        _db.Animals.Add(item);
         _db.SaveChanges();
         return RedirectToAction("Index");
     }
 
     public ActionResult Details(int id)
     {
-        Item thisItem = _db.Items.FirstOrDefault(item => item.ItemId == id);
+        Animal thisItem = _db.Animals.FirstOrDefault(item => item.AnimalId == id);
         return View(thisItem);
     }
   }
