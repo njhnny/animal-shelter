@@ -10,6 +10,6 @@ namespace AnimalShelter.Models
     }
     public int TrickId { get; set; }
     public string TrickName { get; set; }
-    public virtual ICollection<AnimalTrick> JoinEntities { get; }
+    public virtual ICollection<AnimalTrick> JoinEntities { get; set; }
   }
 }

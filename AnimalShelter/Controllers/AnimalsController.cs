@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using AnimalShelter.Models;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,17 +29,25 @@ namespace AnimalShelter.Controllers
     }
 
     [HttpPost]
-    public ActionResult Create(Animal item)
+    public ActionResult Create(Animal animal, int TrickId)
     {
-        _db.Animals.Add(item);
-        _db.SaveChanges();
-        return RedirectToAction("Index");
+      _db.Animals.Add(animal);
+      _db.SaveChanges();
+      if (TrickId != 0)
+      {
+      _db.AnimalTrick.Add(new AnimalTrick() { TrickId = TrickId, AnimalId = animal.AnimalId });
+      }
+      _db.SaveChanges();
+      return RedirectToAction("Index");
     }
 
     public ActionResult Details(int id)
     {
-        Animal thisItem = _db.Animals.FirstOrDefault(item => item.AnimalId == id);
-        return View(thisItem);
+        Animal thisAnimal = _db.Animals
+        .Include(animal => animal.JoinEntities)
+        .ThenInclude(join => join.Trick)
+        .FirstOrDefault(animal => animal.AnimalId == id);
+        return View(thisAnimal);
     }
   }
 }
