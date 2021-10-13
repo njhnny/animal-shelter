@@ -1,0 +1,21 @@
+@{
+  Layout = "_Layout";
+}
+
+@using AnimalShelter.Models;
+
+<h1>Tricks</h1>
+
+@if (@Model.Count == 0)
+{
+  <h3>No tricks have been added yet</h3>
+}
+
+<ul>
+  @foreach(Trick trick in Model)
+  {
+    <li>@trick.TrickName</li>
+
+  }
+</ul>
+<p>@Html.ActionLink("Add new trick", "Create")</p>

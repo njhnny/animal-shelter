@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using AnimalShelter.Models;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +23,8 @@ namespace AnimalShelter.Controllers
 
     public ActionResult Create()
     {
-        return View();
+      ViewBag.TrickId = new SelectList(_db.Tricks, "TrickId", "TrickName");
+      return View();
     }
 
     [HttpPost]

@@ -9,6 +9,9 @@
 {
     @Html.LabelFor(model => model.Description)
     @Html.TextBoxFor(model => model.Description)
+
+    @Html.Label("Enter tricks")
+    @Html.DropDownList("TrickId")
     <input type="submit" value="Add new animal" />
 }
 <p>@Html.ActionLink("Show all animals", "Index")</p>

@@ -1,0 +1,16 @@
+@{
+  Layout = "_Layout";
+}
+
+@model AnimalShelter.Models.Trick
+
+<h4>Add a new trick</h4>
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(model => model.TrickName)
+    @Html.TextBoxFor(model => model.TrickName)
+
+
+    <input type="submit" value="Add new trick" />
+}
+<p>@Html.ActionLink("Show all tricks", "Index")</p>

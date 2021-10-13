@@ -2,17 +2,14 @@ using System.Collections.Generic;
 
 namespace AnimalShelter.Models
 {
-  public class Animal
+  public class Trick
   {
-    public Animal()
+    public Trick()
     {
       this.JoinEntities = new HashSet<AnimalTrick>();
     }
-    public int AnimalId { get; set; }
-    public string Description { get; set; }
-    public string Type { get; set; }
-    public string Name { get; set; }
-
+    public int TrickId { get; set; }
+    public string TrickName { get; set; }
     public virtual ICollection<AnimalTrick> JoinEntities { get; }
   }
 }
