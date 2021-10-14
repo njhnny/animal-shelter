@@ -35,6 +35,8 @@ namespace AnimalShelter.Controllers
       return RedirectToAction("Index");
     }
 
+    
+
     // [HttpGet("/categories/{id}")]
     // public ActionResult Show(int id)
     // {
